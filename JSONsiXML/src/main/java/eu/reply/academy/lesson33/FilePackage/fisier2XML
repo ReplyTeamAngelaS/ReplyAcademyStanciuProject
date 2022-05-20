@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<MenuItem>
+    <Menu>
+        <idMenu>file</idMenu>
+        <valueMenu>File</valueMenu>
+        <Items value="popupList">
+            <Item>
+                <idItem>new</idItem>
+                <labelItem>Create new empty file.</labelItem>
+                <valueItem>New</valueItem>
+                <onClick>createNewFile()</onClick>
+            </Item>
+            <Item>
+                <idItem>open</idItem>
+                <labelItem>Open existing file on disk (can be empty or not).</labelItem>
+                <valueItem>Open</valueItem>
+                <onClick>openExistingFile()</onClick>
+            </Item>
+            <Item>
+                <idItem>save</idItem>
+                <labelItem>Save the current file on disk in text format (can be empty or not).</labelItem>
+                <valueItem>Save</valueItem>
+                <onClick>saveCurrentFile()</onClick>
+            </Item>
+            <Item>
+                <idItem>saveAs</idItem>
+                <labelItem>Save the current file on disk in other formats (can be empty or not). The formats can be: JSON, TXT, XML, CSV.</labelItem>
+                <valueItem>SaveAs</valueItem>
+                <onClick>saveCurrentFileAs()</onClick>
+            </Item>
+            <Item>
+                <idItem>print</idItem>
+                <labelItem>Print the current file (can be empty or not).</labelItem>
+                <valueItem>Print</valueItem>
+                <onClick>printCurrentFile()</onClick>
+            </Item>
+            <Item>
+                <idItem>exit</idItem>
+                <labelItem>Exit the program, but before you will be asked if you want the file to be saved.</labelItem>
+                <valueItem>Exit</valueItem>
+                <onClick>exitProgram()</onClick>
+            </Item>
+        </Items>
+    </Menu>
+    <Menu>
+        <idMenu>edit</idMenu>
+        <valueMenu>Edit</valueMenu>
+        <Items value="popupList">
+            <Item>
+                <idItem>undo</idItem>
+                <labelItem>Undo what you have just wrote (delete the characters in a file).</labelItem>
+                <valueItem>Undo</valueItem>
+                <onClick>undoTyping()</onClick>
+            </Item>
+            <Item>
+                <idItem>redo</idItem>
+                <labelItem>Redo what you have undone (put the characters that you have deleted/undone back in.</labelItem>
+                <valueItem>Redo</valueItem>
+                <onClick>redo()</onClick>
+            </Item>
+            <Item>
+                <idItem>cut</idItem>
+                <labelItem>Snip the characters (memorize it somewhere and delete it from the file).</labelItem>
+                <valueItem>Cut</valueItem>
+                <onClick>cut()</onClick>
+            </Item>
+            <Item>
+                <idItem>copy</idItem>
+                <labelItem>Copy the characters (memorize it somewhere without deleting it from the file.</labelItem>
+                <valueItem>Copy</valueItem>
+                <onClick>copy()</onClick>
+            </Item>
+            <Item>
+                <idItem>paste</idItem>
+                <labelItem>Paste the characters that you have memorized it.</labelItem>
+                <valueItem>Paste</valueItem>
+                <onClick>paste()</onClick>
+            </Item>
+        </Items>
+    </Menu>
+    <Menu>
+        <idMenu>help</idMenu>
+        <valueMenu>Help</valueMenu>
+        <Items value="popupList">
+            <Item>
+                <idItem>documentation</idItem>
+                <labelItem>See the documentation.</labelItem>
+                <valueItem>Documentation</valueItem>
+                <onClick>seeDocumentation()</onClick>
+            </Item>
+        </Items>
+    </Menu>
+</MenuItem>

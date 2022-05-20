@@ -1,0 +1,34 @@
+{
+  "Menu":
+  [{
+    "idMenu": "file",
+    "valueMenu": "File",
+    "popupList": [
+      {"idItem": "new", "labelItem": "Create new empty file.", "valueItem": "New", "onClick": "createNewFile()"},
+      {"idItem": "open", "labelItem": "Open existing file on disk (can be empty or not).", "valueItem": "Open", "onClick": "openExistingFile()"},
+      {"idItem": "save", "labelItem": "Save the current file on disk in text format (can be empty or not).", "valueItem": "Save", "onClick": "saveCurrentFile()"},
+      {"idItem": "saveAs", "labelItem": "Save the current file on disk in other formats (can be empty or not). The formats can be: JSON, TXT, XML, CSV.", "valueItem": "SaveAs", "onClick": "saveCurrentFileAs()"},
+      {"idItem": "print", "labelItem": "Print the current file (can be empty or not).", "valueItem": "Print", "onClick": "printCurrentFile()"},
+      {"idItem": "exit", "labelItem": "Exit the program, but before you will be asked if you want the file to be saved.", "valueItem": "Exit", "onClick": "exitProgram()"}
+    ]
+  },
+    {
+      "idMenu": "edit",
+      "valueMenu": "Edit",
+      "popupList": [
+        {"idItem": "undo", "labelItem": "Undo what you have just wrote (delete the characters in a file).", "valueItem": "Undo", "onClick": "undoTyping()"},
+        {"idItem": "redo", "labelItem": "Redo what you have undone (put the characters that you have deleted/undone back in.", "valueItem": "Redo", "onClick": "redo()"},
+        {"idItem": "cut", "labelItem": "Snip the characters (memorize it somewhere and delete it from the file).", "valueItem": "Cut", "onClick": "cut()"},
+        {"idItem": "copy", "labelItem": "Copy the characters (memorize it somewhere without deleting it from the file.", "valueItem": "Copy", "onClick": "copy()"},
+        {"idItem": "paste", "labelItem": "Paste the characters that you have memorized it.", "valueItem": "Paste", "onClick": "paste()"}
+      ]
+    },
+    {
+      "idMenu": "help",
+      "valueMenu": "Help",
+      "popupList": [
+        {"idItem": "documentation", "labelItem": "See the documentation.", "valueItem": "Documentation", "onClick": "seeDocumentation()"}
+      ]
+    }
+  ]
+}
