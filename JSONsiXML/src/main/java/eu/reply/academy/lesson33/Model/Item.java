@@ -48,7 +48,7 @@ public class Item extends MenuItem{
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Item: ID=" + this.getIdItem() + " VALUE=" + this.getValueItem() + " LABEL=" + this.getLabelItem() + " ONCLICK=" + this.getOnClick() + "\n");
+        stringBuilder.append("Item: ID=" + this.getIdItem() + " VALUE=" + this.getValueItem() + " LABEL=" + this.getLabelItem() + " ONCLICK=" + this.getOnClick());
         return stringBuilder.toString();
     }
 }

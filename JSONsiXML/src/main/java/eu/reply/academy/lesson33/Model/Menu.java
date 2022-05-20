@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Menu extends MenuItem{
+public class Menu extends MenuItem {
 
     private static final String HEADER = "Application Menu Bar";
     private String idMenu;
     private String valueMenu;
-    private List<MenuItem> popupList;
+    private List<MenuItem> menuItemList;
+    private List<Item> itemList;
 
     public String getIdMenu() {
         return this.idMenu;
@@ -29,47 +30,60 @@ public class Menu extends MenuItem{
         this.valueMenu = valueMenu;
     }
 
-    public List<MenuItem> getPopupList() {
-        return this.popupList;
+    public List<MenuItem> getMenuItemList() {
+        return this.menuItemList;
     }
 
-    public void setPopupList(List<MenuItem> popupList) {
-        if (this.popupList == null) {
-            this.popupList = new ArrayList<>();
+    public void setPopupList(Menu menu, List<Item> itemList) {
+        if (this.getMenuItemList() == null) {
+            this.menuItemList = new ArrayList<>();
         }
-        this.popupList = popupList;
+        this.menuItemList.add(menu);
+        this.menuItemList.addAll(itemList);
+    }
+
+    private List<Item> getItemList() {
+        return this.itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        if (this.getItemList() == null) {
+            this.itemList = new ArrayList<>();
+        }
+        this.itemList = itemList;
     }
 
     public String getHeader() {
         return Menu.HEADER;
     }
 
-    public Menu(String idMenu, String valueMenu, List<MenuItem> menuItemList) {
+    public Menu(String idMenu, String valueMenu, List<Item> itemList) {
         this.setIdMenu(idMenu);
         this.setValueMenu(valueMenu);
-        this.setPopupList(menuItemList);
+        this.setItemList(itemList);
+        this.setPopupList(this, itemList);
     }
 
     public Menu() {
-
+        this.menuItemList = new ArrayList<>();
+        this.itemList = new ArrayList<>();
     }
 
-    public Menu(FactoryMenu factoryMenu)
-    {
-       // popupList = factoryMenu.createMenuItem();
+    public Menu(FactoryMenu factoryMenu) {
+        this.menuItemList = factoryMenu.createMenuItem();
     }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Menu: ID=" + this.getIdMenu() + " VALUE=" + this.getValueMenu() + " Popup=\n" + "  " + Arrays.toString(this.getPopupList().toArray()).replace('[', ' ')
-                .replace(']', ' ').replace(',', ' ').trim());
+        stringBuilder.append("\nMenu: ID=" + this.getIdMenu() + " VALUE=" + this.getValueMenu() + " Popup=");
         return stringBuilder.toString();
     }
 
-    public void printMenu(List<MenuItem> menuItemList) {
-        System.out.println(this.getHeader());
+    public void printMenu() {
+        System.out.println("-------------------------------" + this.getHeader() + "-------------------------------");
         for (MenuItem menuItem : menuItemList) {
             System.out.println(menuItem);
         }
+        System.out.println("/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
     }
 }

@@ -1,8 +1,8 @@
 package eu.reply.academy.lesson33.Factory;
 
+import eu.reply.academy.lesson33.Model.Item;
 import eu.reply.academy.lesson33.Model.Menu;
 import eu.reply.academy.lesson33.Model.MenuItem;
-import org.json.simple.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -16,12 +16,12 @@ public abstract class FactoryMenu {
     public String fileName;
     public String fileExtension;
 
-    public FactoryMenu(String path){
+    public FactoryMenu(String path) {
         this.setPath(path);
     }
 
-    public void setPath(String path){
-        this.path=path;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public void setFileName(String fileName) {
@@ -32,9 +32,21 @@ public abstract class FactoryMenu {
         this.fileExtension = fileExtension;
     }
 
-    protected StringBuilder readFileText(String path, String fileName) {
+    public String getFileExtension() {
+        return this.fileExtension;
+    }
+
+    public String getPath() {
+        return this.path;
+    }
+
+    public String getFileName() {
+        return this.fileName;
+    }
+
+    protected StringBuilder readFileText() {
         StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path + "\\" + fileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.getPath() + "\\" + this.getFileName()))) {
             String linie;
             while ((linie = bufferedReader.readLine()) != null) {
                 stringBuilder.append(linie);
@@ -49,7 +61,7 @@ public abstract class FactoryMenu {
 
     protected abstract Menu createObjectMenu(Object obiect);
 
-    protected abstract void createObjectItem(Object obiect, List<MenuItem> menuItemList);
+    protected abstract void createObjectItem(Object obiect, List<Item> itemList);
 
-    public abstract List<MenuItem> createMenuItem(String path, String fileName);
+    public abstract List<MenuItem> createMenuItem();
 }

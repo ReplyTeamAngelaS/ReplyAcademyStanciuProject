@@ -21,15 +21,22 @@ import java.util.List;
 public class FactoryMenuXML extends FactoryMenu {
 
     public FactoryMenuXML(String path, String fileName, String fileExtension) {
+        this(path);
+        if (this.getFileExtension().equals(fileExtension.toLowerCase()))
+            this.setFileName(fileName);
+        else
+            System.out.println("Ati gresit formatul.");
+    }
 
-        this.setFileName(fileName);
-        this.setFileExtension(fileExtension);
+    public FactoryMenuXML(String path) {
+        super(path);
+        this.setFileExtension("xml");
     }
 
     @Override
     protected Menu createObjectMenu(Object obiect) {
         Node node = castToNode(obiect);
-        List<MenuItem> menuItemList = new ArrayList<>();
+        List<Item> itemList = new ArrayList<>();
         Menu menu = null;
         if (node.getNodeType() == Node.ELEMENT_NODE) {
             Element element = (Element) node;
@@ -38,20 +45,20 @@ public class FactoryMenuXML extends FactoryMenu {
             Node itemsNode = nodeListAfterSerchItems.item(0);
             NodeList nodeList = itemsNode.getChildNodes();
             for (int i = 0; i < nodeList.getLength(); i++) {
-                this.createObjectItem(nodeList.item(i), menuItemList);
+                this.createObjectItem(nodeList.item(i), itemList);
             }
-            menu = new Menu(element.getElementsByTagName("idMenu").item(0).getTextContent(), element.getElementsByTagName("valueMenu").item(0).getTextContent(), menuItemList);
+            menu = new Menu(element.getElementsByTagName("idMenu").item(0).getTextContent(), element.getElementsByTagName("valueMenu").item(0).getTextContent(), itemList);
         }
         return menu;
     }
 
     @Override
-    protected void createObjectItem(Object obiect, List<MenuItem> menuItemList) {
+    protected void createObjectItem(Object obiect, List<Item> itemList) {
         Node node = castToNode(obiect);
         if (node.getNodeType() == Node.ELEMENT_NODE) {
             Element element = (Element) node;
             Item item = new Item(element.getElementsByTagName("idItem").item(0).getTextContent(), element.getElementsByTagName("labelItem").item(0).getTextContent(), element.getElementsByTagName("valueItem").item(0).getTextContent(), element.getElementsByTagName("onClick").item(0).getTextContent());
-            menuItemList.add(item);
+            itemList.add(item);
         }
     }
 
@@ -66,18 +73,17 @@ public class FactoryMenuXML extends FactoryMenu {
     }
 
     @Override
-    public List<MenuItem> createMenuItem(String path, String fileName) {
+    public List<MenuItem> createMenuItem() {
         List<MenuItem> menuItemList = new ArrayList<>();
         try {
-            StringBuilder stringBuilder = readFileText(path, fileName + ".xml");
+            StringBuilder stringBuilder = readFileText();
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(new InputSource(new StringReader(stringBuilder.toString())));
-            NodeList nodeList = document.getElementsByTagName("Menu"); //intoarce un singur item
+            NodeList nodeList = document.getElementsByTagName("Menu"); //poate intoarce si un singur item, depinde cum il iei
             for (int i = 0; i < nodeList.getLength(); i++) {
-                System.out.println(i);
                 Menu menu = this.createObjectMenu(nodeList.item(i));
-                menuItemList.add(menu);
+                menuItemList.addAll(menu.getMenuItemList());
             }
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
